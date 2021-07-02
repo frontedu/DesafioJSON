@@ -1,65 +1,95 @@
 //DADOS PARA O FORMUÁRIO
 let data = [
-{
-   "name":"faleconosco",
-   "method":"get",
-   "action":"enviado.html",
-   "autocomplete":true,
-   "items":[
-      {
-         "element":"input",
-         "type":"text",
-         "name":"nome",
-         "placeholder":"Digite seu nome",
-         "id":"nome",
-         "prelabel":"Nome: "
-      },
-      {
-         "element":"input",
-         "type":"radio",
-         "value":"ADS",
-         "name":"curso",
-         "id":"ads",
-         "poslabel":"Análise e Desenvolvimento de Sistemas"
-      },
-      {
-         "element":"input",
-         "type":"radio",
-         "value":"EC",
-         "name":"curso",
-         "id":"ec",
-         "poslabel":"Engenharia de Computação"
-      },
-      {
-         "type":"select",
-         "name":"turno",
-         "children":[
-            {
-               "element":"option",
-               "value":"noturno",
-               "innerhtml":"Noturno"
-            },
-            {
-              "element":"option",
-              "value":"vespertino",
-              "innerhtml":"Vespertino"
-           },
-            {
-               "element":"option",
-               "value":"multi",
-               "innerhtml":"Multiperiódico"
-            }
-         ],
-         "prelabel":"Período: "
-      },
-      {
-         "element":"input",
-         "type":"submit",
-         "value":"Enviar",
-         "name":"enviar"
-      }
-   ]
-}
+  {
+    "name": "faleconosco",
+    "method": "get",
+    "action": "enviado.html",
+    "autocomplete": true,
+    "items": [
+       {
+          "element": "input",
+          "type": "text",
+          "name": "nome",
+          "placeholder": "Digite seu nome",
+          "id": "nome"
+       },
+       {
+          "element": "input",
+          "type": "text",
+          "name": "cpf",
+          "placeholder": "Digite seu cpf",
+          "id": "cpf"
+       },
+       {
+          "element": "select",
+          "name": "gender",
+          "children": [
+             {
+                "element": "option",
+                "value": "F",
+                "innerhtml": "Feminino"
+             },
+             {
+                "element": "option",
+                "value": "M",
+                "innerhtml": "Masculino"
+             }
+          ]
+       },
+       {
+          "element": "input",
+          "type": "text",
+          "name": "endereco",
+          "placeholder": "Endereço completo: ",
+          "id": "endereco"
+       },
+       {
+          "element": "input",
+          "type": "text",
+          "name": "celular",
+          "placeholder": "Celular: (xx) xxxxx-xxxx",
+          "id": "celular"
+       },
+       {
+          "element": "input",
+          "type": "radio",
+          "value": "ADS",
+          "name": "curso",
+          "id": "ads",
+          "poslabel": "Análise e Desenvolvimento de Sistemas"
+       },
+       {
+          "element": "input",
+          "type": "radio",
+          "value": "EC",
+          "name": "curso",
+          "id": "ec",
+          "poslabel": "Engenharia de Computação"
+       },
+       {
+          "element": "input",
+          "type": "checkbox",
+          "value": "algoritmos",
+          "name": "disciplinas",
+          "id": "algoritmos",
+          "poslabel": "Algoritmos e Lógica de Programação"
+       },
+       {
+          "element": "input",
+          "type": "checkbox",
+          "value": "estruturas",
+          "name": "disciplinas",
+          "id": "estruturas",
+          "poslabel": "Estruturas de Dados"
+       },
+       {
+          "element": "input",
+          "type": "submit",
+          "value": "Enviar",
+          "name": "enviar"
+       }
+    ]
+ }
 ];
 
 let input;
@@ -84,7 +114,8 @@ function generate() {
 //GERAR CAMPOS DO FORMULÁRIO
 function byIndex() {
   for (index of data[0].items) {
-    index.element == "select" ? (index.type = "select") : false;
+    index.element == "select" ?
+    (index.type = "select") : false;
     switch (index.type) {
       case "text":
         document.write(isText(index));
@@ -145,7 +176,8 @@ let isSelect = (obj) => {
   obj.name +'" id="' + obj.name + '">';
   for (option of index.children) {
     input +=
-      '<option value="' + option.value + '">' + option.innerhtml + "</option>";
+      '<option value="' + option.value + '">' +
+      option.innerhtml + "</option>";
   }
   input += "</select><br><br>";
   return input;
