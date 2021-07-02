@@ -1,0 +1,55 @@
+{
+   "name":"faleconosco",
+   "method":"get",
+   "action":"enviado.html",
+   "autocomplete":true,
+   "items":[
+      {
+         "element":"input",
+         "type":"text",
+         "name":"nome",
+         "placeholder":"Digite seu nome",
+         "id":"nome",
+         "prelabel":"Nome: "
+      },
+      {
+         "element":"input",
+         "type":"radio",
+         "value":"ADS",
+         "name":"curso",
+         "id":"ads",
+         "poslabel":"Análise e Desenvolvimento de Sistemas"
+      },
+      {
+         "element":"input",
+         "type":"radio",
+         "value":"EC",
+         "name":"curso",
+         "id":"ec",
+         "poslabel":"Engenharia de Computação"
+      },
+      {
+         "type":"select",
+         "name":"turno",
+         "children":[
+            {
+               "element":"option",
+               "value":"noturno",
+               "innerhtml":"Noturno"
+            },
+            {
+               "element":"option",
+               "value":"multi",
+               "innerhtml":"Multiperiódico"
+            }
+         ],
+         "prelabel":"Período: "
+      },
+      {
+         "element":"input",
+         "type":"submit",
+         "value":"Enviar",
+         "name":"enviar"
+      }
+   ]
+}

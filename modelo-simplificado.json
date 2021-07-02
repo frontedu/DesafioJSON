@@ -1,0 +1,44 @@
+{
+   "name":"alunos",
+   "method":"get",
+   "action":"ok.html",
+   "autocomplete":true,
+   "items":[
+      {
+         "element":"input",
+         "type":"text",
+         "value":"",
+         "name":"nome",
+         "placeholder":"Digite seu nome"
+      },
+      {
+         "element":"input",
+         "type":"text",
+         "value":"",
+         "name":"email",
+         "placeholder":"Digite seu e-mail:"
+      },
+      {
+         "element":"select",
+         "name":"gender",
+         "children":[
+            {
+               "element":"option",
+               "value":"F",
+               "innerhtml":"Feminino"
+            },
+            {
+               "element":"option",
+               "value":"M",
+               "innerhtml":"Masculino"
+            }
+         ]
+      },
+      {
+         "element":"input",
+         "type":"button",
+         "value":"Enviar",
+         "name":"enviar"
+      }
+   ]
+}
