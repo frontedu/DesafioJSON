@@ -1,5 +1,5 @@
 //DADOS PARA O FORMUÁRIO
-let data = [
+let input, data = [
   {
     "name": "faleconosco",
     "method": "get",
@@ -92,7 +92,6 @@ let data = [
  }
 ];
 
-let input;
 //GERAR FORMULÁRIO
 function generate() {
   const prepform =

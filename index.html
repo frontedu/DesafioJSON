@@ -1,18 +1,262 @@
+<!--
+IFTM - SEGUNDO PERÍODO @ LSW/SISOP
+FEITO POR: DARCCELIO WILDSON, EDUARDO FERNANDES.
+-->
+
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+  <head>
     <title>Desafio Final JSON</title>
-    <meta charset="UTF-8">
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
 
-<body>
+      body {
+        margin: 2%;
+        font-size: 20px;
+        font-family: "Roboto", -apple-system, "Segoe UI", "Open Sans",
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      input {
+        padding: 8px 12px;
+      }
+
+      select {
+        padding: 8px 12px;
+        border-radius: 3px;
+      }
+
+      #enviado {
+        color: #5856d6;
+      }
+
+    </style>
+  </head>
+
+  <body>
     <h1>LSW - Desafio Final de JSON</h1>
     <p>Formulário dinâmico de base JSON</p>
     <h2>Inserir dados:</h2>
-</body>
+  </body>
 
-<script src="script.js" onload=generate()></script>
+  <script>
+  
+    //DADOS PARA O FORMUÁRIO
+    let input, data = [
+      {
+        name: "faleconosco",
+        method: "get",
+        action: "enviado.html",
+        autocomplete: true,
+        items: [
+          {
+            element: "input",
+            type: "text",
+            name: "nome",
+            placeholder: "Digite seu nome",
+            id: "nome",
+          },
+          {
+            element: "input",
+            type: "text",
+            name: "cpf",
+            placeholder: "Digite seu cpf",
+            id: "cpf",
+          },
+          {
+            element: "select",
+            name: "gender",
+            children: [
+              {
+                element: "option",
+                value: "F",
+                innerhtml: "Feminino",
+              },
+              {
+                element: "option",
+                value: "M",
+                innerhtml: "Masculino",
+              },
+            ],
+          },
+          {
+            element: "input",
+            type: "text",
+            name: "endereco",
+            placeholder: "Endereço completo: ",
+            id: "endereco",
+          },
+          {
+            element: "input",
+            type: "text",
+            name: "celular",
+            placeholder: "Celular: (xx) xxxxx-xxxx",
+            id: "celular",
+          },
+          {
+            element: "input",
+            type: "radio",
+            value: "ADS",
+            name: "curso",
+            id: "ads",
+            poslabel: "Análise e Desenvolvimento de Sistemas",
+          },
+          {
+            element: "input",
+            type: "radio",
+            value: "EC",
+            name: "curso",
+            id: "ec",
+            poslabel: "Engenharia de Computação",
+          },
+          {
+            element: "input",
+            type: "checkbox",
+            value: "algoritmos",
+            name: "disciplinas",
+            id: "algoritmos",
+            poslabel: "Algoritmos e Lógica de Programação",
+          },
+          {
+            element: "input",
+            type: "checkbox",
+            value: "estruturas",
+            name: "disciplinas",
+            id: "estruturas",
+            poslabel: "Estruturas de Dados",
+          },
+          {
+            element: "input",
+            type: "submit",
+            value: "Enviar",
+            name: "enviar",
+          },
+        ],
+      },
+    ];
 
+    //GERAR FORMULÁRIO
+    function generate() {
+      document.write(
+        '<form name="' +
+        data[0].name +
+        '" action="' +
+        data[0].action +
+        '" method="' +
+        data[0].method +
+        '" autocomplete="' +
+        data[0].autocomplete +
+        '">');
+      byIndex();
+      document.write("</form>");
+    }
+
+    //GERAR CAMPOS DO FORMULÁRIO
+    function byIndex() {
+      for (index of data[0].items) {
+        index.element == "select" ? (index.type = "select") : false;
+        switch (index.type) {
+          case "text":
+            document.write(isText(index));
+            break;
+          case "radio":
+            document.write(isRadio(index));
+            break;
+          case "select":
+            document.write(isSelect(index));
+            break;
+          case "checkbox":
+            document.write(isCheckbox(index));
+            break;
+          case "submit":
+          case "button":
+            document.write(isSubmit(index));
+            break;
+        }
+      }
+    }
+
+    //GERAR CAMPOS DE INPUT TEXTO
+    let isText = (obj) => {
+      input = '<label for="' + obj.id + '">';
+      obj.prelabel ? (input += obj.prelabel) : false;
+      input +=
+        '</label><input type="text" id="' +
+        obj.id +
+        '" name="' +
+        obj.name +
+        '" placeholder="' +
+        obj.placeholder +
+        '"><br></br>';
+      return input;
+    };
+
+    //GERAR CAMPOS DE INPUT RADIO
+    let isRadio = (obj) => {
+      input =
+        '<input type="radio" id="' +
+        obj.id +
+        '" name="' +
+        obj.name +
+        '" value="' +
+        obj.value +
+        '"><label for="' +
+        obj.id +
+        '">' +
+        obj.poslabel +
+        "</label><br>";
+      return input;
+    };
+
+    //GERAR CAMPOS DE DROP-DOWN
+    let isSelect = (obj) => {
+      input = '<label for="' + obj.name + '">';
+      obj.prelabel ? (input += obj.prelabel) : false;
+      input += '</label><select name="' + obj.name + '" id="' + obj.name + '">';
+      for (option of index.children) {
+        input +=
+          '<option value="' +
+          option.value +
+          '">' +
+          option.innerhtml +
+          "</option>";
+      }
+      input += "</select><br><br>";
+      return input;
+    };
+
+    //GERAR CAMPOS DE CHECKBOX
+    let isCheckbox = (obj) => {
+      input =
+        '<input type="checkbox" id="' +
+        obj.id +
+        '" name="' +
+        obj.name +
+        '" value="' +
+        obj.value +
+        '"><label for="' +
+        obj.id +
+        '">' +
+        obj.poslabel +
+        "</label><br>";
+      return input;
+    };
+
+    //GERAR CAMPO SUBMIT
+    let isSubmit = (obj) => {
+      input =
+        '<br><input type="' +
+        obj.type +
+        '" name="' +
+        obj.name +
+        '" value="' +
+        obj.value +
+        '">';
+      return input;
+    };   
+
+    generate();
+  </script>
 </html>
