@@ -72,7 +72,7 @@ let input, data = [
           "value": "algoritmos",
           "name": "disciplinas",
           "id": "algoritmos",
-          "poslabel": "Algoritmos e Lógica de Programação"
+          "poslabel": "Algoritmos e Lógica de Programação",
        },
        {
           "element": "input",
@@ -116,7 +116,7 @@ function byIndex() {
     index.element == "select" ?
     (index.type = "select") : false;
     switch (index.type) {
-      case "text":
+      case "text": case "email":
         document.write(isText(index));
         break;
       case "radio":
@@ -146,13 +146,15 @@ let isText = (obj) => {
     obj.name +
     '" placeholder="' +
     obj.placeholder +
-    '"><br></br>';
+    '"><br><br>';
   return input;
 };
 
 //GERAR CAMPOS DE INPUT RADIO
 let isRadio = (obj) => {
-  input =
+  input = '<label for="' + obj.name + '">';
+  obj.prelabel ? (input += obj.prelabel) : false;
+  input +=
     '<input type="radio" id="' +
     obj.id +
     '" name="' +
@@ -184,8 +186,10 @@ let isSelect = (obj) => {
 
 //GERAR CAMPOS DE CHECKBOX
 let isCheckbox = (obj) => {
-  input =
-    '<input type="checkbox" id="' +
+  input = '<label for="' + obj.name + '">';
+  obj.prelabel ? (input += obj.prelabel) : false;
+  input +=
+    '</label><input type="checkbox" id="' +
     obj.id +
     '" name="' +
     obj.name +
